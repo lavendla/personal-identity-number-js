@@ -1,0 +1,836 @@
+{
+    "ambiguous-se-dk-medcom-number-also-parses-as-swedish": {
+        "canonical": null,
+        "failure": null,
+        "formats": null,
+        "outcome": "ambiguous",
+        "recognizedCountry": null,
+        "scheme": null
+    },
+    "ambiguous-se-dk-naming-a-country-resolves-it": {
+        "canonical": "2601012384",
+        "failure": null,
+        "formats": {
+            "canonical": "2601012384",
+            "display": "260101-2384",
+            "masked": "260101****",
+            "short": "260101-2384"
+        },
+        "outcome": "parsed",
+        "recognizedCountry": null,
+        "scheme": "dk-cpr-number"
+    },
+    "ambiguous-se-dk-swedish-short-form-also-parses-as-danish": {
+        "canonical": null,
+        "failure": null,
+        "formats": null,
+        "outcome": "ambiguous",
+        "recognizedCountry": null,
+        "scheme": null
+    },
+    "dk-century-serials-0001-3999-resolve-to-the-nineteen-hundreds": {
+        "canonical": null,
+        "failure": "impossible-date",
+        "formats": null,
+        "outcome": "failed",
+        "recognizedCountry": null,
+        "scheme": null
+    },
+    "dk-century-serials-4000-4999-years-00-36-resolve-to-the-two-thousands": {
+        "canonical": null,
+        "failure": "future-birth-date",
+        "formats": null,
+        "outcome": "failed",
+        "recognizedCountry": null,
+        "scheme": null
+    },
+    "dk-century-serials-5000-8999-years-00-57-resolve-to-the-two-thousands": {
+        "canonical": null,
+        "failure": "future-birth-date",
+        "formats": null,
+        "outcome": "failed",
+        "recognizedCountry": null,
+        "scheme": null
+    },
+    "dk-century-serials-9000-9999-years-00-36-resolve-to-the-two-thousands": {
+        "canonical": "1306249996",
+        "failure": null,
+        "formats": {
+            "canonical": "1306249996",
+            "display": "130624-9996",
+            "masked": "130624****",
+            "short": "130624-9996"
+        },
+        "outcome": "parsed",
+        "recognizedCountry": null,
+        "scheme": "dk-cpr-number"
+    },
+    "dk-century-serials-9000-9999-years-37-99-resolve-to-the-nineteen-hundreds": {
+        "canonical": "2509479989",
+        "failure": null,
+        "formats": {
+            "canonical": "2509479989",
+            "display": "250947-9989",
+            "masked": "250947****",
+            "short": "250947-9989"
+        },
+        "outcome": "parsed",
+        "recognizedCountry": null,
+        "scheme": "dk-cpr-number"
+    },
+    "dk-cpr-number-odd-serial-is-male": {
+        "canonical": "0104909995",
+        "failure": null,
+        "formats": {
+            "canonical": "0104909995",
+            "display": "010490-9995",
+            "masked": "010490****",
+            "short": "010490-9995"
+        },
+        "outcome": "parsed",
+        "recognizedCountry": null,
+        "scheme": "dk-cpr-number"
+    },
+    "dk-cpr-number-post-2007-failing-modulus-eleven-is-valid": {
+        "canonical": "1310169995",
+        "failure": null,
+        "formats": {
+            "canonical": "1310169995",
+            "display": "131016-9995",
+            "masked": "131016****",
+            "short": "131016-9995"
+        },
+        "outcome": "parsed",
+        "recognizedCountry": null,
+        "scheme": "dk-cpr-number"
+    },
+    "dk-cpr-number-rejects-a-birth-date-after-the-reference-date": {
+        "canonical": null,
+        "failure": "future-birth-date",
+        "formats": null,
+        "outcome": "failed",
+        "recognizedCountry": null,
+        "scheme": null
+    },
+    "dk-cpr-number-rejects-a-serial-of-zero": {
+        "canonical": null,
+        "failure": "unsupported-scheme",
+        "formats": null,
+        "outcome": "failed",
+        "recognizedCountry": "FI",
+        "scheme": null
+    },
+    "dk-cpr-number-rejects-a-serial-of-zero-without-a-separator": {
+        "canonical": null,
+        "failure": "not-an-identity-number",
+        "formats": null,
+        "outcome": "failed",
+        "recognizedCountry": null,
+        "scheme": null
+    },
+    "dk-cpr-number-rejects-the-thirtieth-of-february": {
+        "canonical": null,
+        "failure": "impossible-date",
+        "formats": null,
+        "outcome": "failed",
+        "recognizedCountry": null,
+        "scheme": null
+    },
+    "dk-cpr-number-renders-short-identically-to-display": {
+        "canonical": "2512489996",
+        "failure": null,
+        "formats": {
+            "canonical": "2512489996",
+            "display": "251248-9996",
+            "masked": "251248****",
+            "short": "251248-9996"
+        },
+        "outcome": "parsed",
+        "recognizedCountry": null,
+        "scheme": "dk-cpr-number"
+    },
+    "dk-cpr-number-with-separator": {
+        "canonical": "2512489996",
+        "failure": null,
+        "formats": {
+            "canonical": "2512489996",
+            "display": "251248-9996",
+            "masked": "251248****",
+            "short": "251248-9996"
+        },
+        "outcome": "parsed",
+        "recognizedCountry": null,
+        "scheme": "dk-cpr-number"
+    },
+    "dk-cpr-number-without-separator": {
+        "canonical": "2512489996",
+        "failure": null,
+        "formats": {
+            "canonical": "2512489996",
+            "display": "251248-9996",
+            "masked": "251248****",
+            "short": "251248-9996"
+        },
+        "outcome": "parsed",
+        "recognizedCountry": null,
+        "scheme": "dk-cpr-number"
+    },
+    "fi-personal-identity-code-in-lowercase-is-an-invalid-character": {
+        "canonical": null,
+        "failure": "invalid-character",
+        "formats": null,
+        "outcome": "failed",
+        "recognizedCountry": null,
+        "scheme": null
+    },
+    "fi-personal-identity-code-is-recognized-not-supported": {
+        "canonical": null,
+        "failure": "unsupported-scheme",
+        "formats": null,
+        "outcome": "failed",
+        "recognizedCountry": "FI",
+        "scheme": null
+    },
+    "fi-personal-identity-code-is-recognized-when-nothing-parses-it": {
+        "canonical": null,
+        "failure": "unsupported-scheme",
+        "formats": null,
+        "outcome": "failed",
+        "recognizedCountry": "FI",
+        "scheme": null
+    },
+    "fi-personal-identity-code-loses-to-a-real-danish-parse": {
+        "canonical": "0104909989",
+        "failure": null,
+        "formats": {
+            "canonical": "0104909989",
+            "display": "010490-9989",
+            "masked": "010490****",
+            "short": "010490-9989"
+        },
+        "outcome": "parsed",
+        "recognizedCountry": null,
+        "scheme": "dk-cpr-number"
+    },
+    "fi-personal-identity-code-recognizes-a-marker-added-in-2023": {
+        "canonical": null,
+        "failure": "unsupported-scheme",
+        "formats": null,
+        "outcome": "failed",
+        "recognizedCountry": "FI",
+        "scheme": null
+    },
+    "fi-personal-identity-code-recognizes-the-2000s-marker": {
+        "canonical": null,
+        "failure": "unsupported-scheme",
+        "formats": null,
+        "outcome": "failed",
+        "recognizedCountry": "FI",
+        "scheme": null
+    },
+    "no-national-identity-number-is-recognized-not-supported": {
+        "canonical": null,
+        "failure": "unsupported-scheme",
+        "formats": null,
+        "outcome": "failed",
+        "recognizedCountry": "NO",
+        "scheme": null
+    },
+    "no-national-identity-number-is-recognized-without-a-country-named": {
+        "canonical": null,
+        "failure": "unsupported-scheme",
+        "formats": null,
+        "outcome": "failed",
+        "recognizedCountry": "NO",
+        "scheme": null
+    },
+    "no-national-identity-number-recognition-ignores-the-date": {
+        "canonical": null,
+        "failure": "unsupported-scheme",
+        "formats": null,
+        "outcome": "failed",
+        "recognizedCountry": "NO",
+        "scheme": null
+    },
+    "no-national-identity-number-with-a-separator-is-not-recognized": {
+        "canonical": null,
+        "failure": "not-an-identity-number",
+        "formats": null,
+        "outcome": "failed",
+        "recognizedCountry": null,
+        "scheme": null
+    },
+    "se-century-boundary-current-century-matches-reference-year": {
+        "canonical": "190312049802",
+        "failure": null,
+        "formats": {
+            "canonical": "190312049802",
+            "display": "19031204-9802",
+            "masked": "19031204****",
+            "short": "031204-9802"
+        },
+        "outcome": "parsed",
+        "recognizedCountry": null,
+        "scheme": "se-personal-number"
+    },
+    "se-century-boundary-future-century-explicit": {
+        "canonical": null,
+        "failure": "future-birth-date",
+        "formats": null,
+        "outcome": "failed",
+        "recognizedCountry": null,
+        "scheme": null
+    },
+    "se-century-boundary-hyphen-separator-recent-century": {
+        "canonical": "201901012391",
+        "failure": null,
+        "formats": {
+            "canonical": "201901012391",
+            "display": "20190101-2391",
+            "masked": "20190101****",
+            "short": "190101-2391"
+        },
+        "outcome": "parsed",
+        "recognizedCountry": null,
+        "scheme": "se-personal-number"
+    },
+    "se-century-boundary-plus-separator-over-hundred": {
+        "canonical": "190312049802",
+        "failure": null,
+        "formats": {
+            "canonical": "190312049802",
+            "display": "19031204-9802",
+            "masked": "19031204****",
+            "short": "031204+9802"
+        },
+        "outcome": "parsed",
+        "recognizedCountry": null,
+        "scheme": "se-personal-number"
+    },
+    "se-century-boundary-previous-century-matches-reference-year": {
+        "canonical": "190312049802",
+        "failure": null,
+        "formats": {
+            "canonical": "190312049802",
+            "display": "19031204-9802",
+            "masked": "19031204****",
+            "short": "031204-9802"
+        },
+        "outcome": "parsed",
+        "recognizedCountry": null,
+        "scheme": "se-personal-number"
+    },
+    "se-century-boundary-requires-reference-date": {
+        "canonical": null,
+        "failure": "century-required",
+        "formats": null,
+        "outcome": "failed",
+        "recognizedCountry": null,
+        "scheme": null
+    },
+    "se-century-boundary-short-format-requires-reference-date": {
+        "canonical": "190312049802",
+        "failure": null,
+        "formats": {
+            "canonical": "190312049802",
+            "display": "19031204-9802",
+            "masked": "19031204****",
+            "short": {
+                "error": "reference-date-required"
+            }
+        },
+        "outcome": "parsed",
+        "recognizedCountry": null,
+        "scheme": "se-personal-number"
+    },
+    "se-century-boundary-timezone-sensitive-reference-instant": {
+        "canonical": "190312049802",
+        "failure": null,
+        "formats": {
+            "canonical": "190312049802",
+            "display": "19031204-9802",
+            "masked": "19031204****",
+            "short": "031204-9802"
+        },
+        "outcome": "parsed",
+        "recognizedCountry": null,
+        "scheme": "se-personal-number"
+    },
+    "se-coordination-number-century-resolves-from-the-real-day-not-the-offset": {
+        "canonical": "202601612381",
+        "failure": null,
+        "formats": {
+            "canonical": "202601612381",
+            "display": "20260161-2381",
+            "masked": "20260161****",
+            "short": "260161-2381"
+        },
+        "outcome": "parsed",
+        "recognizedCountry": null,
+        "scheme": "se-coordination-number"
+    },
+    "se-coordination-number-checksum-mismatch": {
+        "canonical": null,
+        "failure": "checksum-mismatch",
+        "formats": null,
+        "outcome": "failed",
+        "recognizedCountry": null,
+        "scheme": null
+    },
+    "se-coordination-number-day-61-parses-to-first": {
+        "canonical": "202601612381",
+        "failure": null,
+        "formats": {
+            "canonical": "202601612381",
+            "display": "20260161-2381",
+            "masked": "20260161****",
+            "short": "260161-2381"
+        },
+        "outcome": "parsed",
+        "recognizedCountry": null,
+        "scheme": "se-coordination-number"
+    },
+    "se-coordination-number-day-91-parses-to-thirty-first": {
+        "canonical": "202601912393",
+        "failure": null,
+        "formats": {
+            "canonical": "202601912393",
+            "display": "20260191-2393",
+            "masked": "20260191****",
+            "short": "260191-2393"
+        },
+        "outcome": "parsed",
+        "recognizedCountry": null,
+        "scheme": "se-coordination-number"
+    },
+    "se-coordination-number-day-92-is-impossible": {
+        "canonical": null,
+        "failure": "impossible-date",
+        "formats": null,
+        "outcome": "failed",
+        "recognizedCountry": null,
+        "scheme": null
+    },
+    "se-coordination-number-invalid-checksum-day-61": {
+        "canonical": null,
+        "failure": "checksum-mismatch",
+        "formats": null,
+        "outcome": "failed",
+        "recognizedCountry": null,
+        "scheme": null
+    },
+    "se-coordination-number-invalid-checksum-day-91": {
+        "canonical": null,
+        "failure": "checksum-mismatch",
+        "formats": null,
+        "outcome": "failed",
+        "recognizedCountry": null,
+        "scheme": null
+    },
+    "se-coordination-number-partial-date-still-resolves-its-century": {
+        "canonical": "198000602394",
+        "failure": null,
+        "formats": {
+            "canonical": "198000602394",
+            "display": "19800060-2394",
+            "masked": "19800060****",
+            "short": "800060-2394"
+        },
+        "outcome": "parsed",
+        "recognizedCountry": null,
+        "scheme": "se-coordination-number"
+    },
+    "se-coordination-number-scheme-not-allowed": {
+        "canonical": null,
+        "failure": "scheme-not-allowed",
+        "formats": null,
+        "outcome": "failed",
+        "recognizedCountry": null,
+        "scheme": null
+    },
+    "se-coordination-number-scheme-not-allowed-for-valid-number": {
+        "canonical": null,
+        "failure": "scheme-not-allowed",
+        "formats": null,
+        "outcome": "failed",
+        "recognizedCountry": null,
+        "scheme": null
+    },
+    "se-coordination-number-twelve-digits": {
+        "canonical": "202601622380",
+        "failure": null,
+        "formats": {
+            "canonical": "202601622380",
+            "display": "20260162-2380",
+            "masked": "20260162****",
+            "short": "260162-2380"
+        },
+        "outcome": "parsed",
+        "recognizedCountry": null,
+        "scheme": "se-coordination-number"
+    },
+    "se-coordination-number-unknown-day-parses": {
+        "canonical": "191711602399",
+        "failure": null,
+        "formats": {
+            "canonical": "191711602399",
+            "display": "19171160-2399",
+            "masked": "19171160****",
+            "short": "171160+2399"
+        },
+        "outcome": "parsed",
+        "recognizedCountry": null,
+        "scheme": "se-coordination-number"
+    },
+    "se-coordination-number-unknown-month-and-day-parses": {
+        "canonical": "198000602394",
+        "failure": null,
+        "formats": {
+            "canonical": "198000602394",
+            "display": "19800060-2394",
+            "masked": "19800060****",
+            "short": "800060-2394"
+        },
+        "outcome": "parsed",
+        "recognizedCountry": null,
+        "scheme": "se-coordination-number"
+    },
+    "se-coordination-number-unknown-month-parses": {
+        "canonical": "191500722390",
+        "failure": null,
+        "formats": {
+            "canonical": "191500722390",
+            "display": "19150072-2390",
+            "masked": "19150072****",
+            "short": "150072+2390"
+        },
+        "outcome": "parsed",
+        "recognizedCountry": null,
+        "scheme": "se-coordination-number"
+    },
+    "se-dates-day-zero-is-impossible": {
+        "canonical": null,
+        "failure": "impossible-date",
+        "formats": null,
+        "outcome": "failed",
+        "recognizedCountry": null,
+        "scheme": null
+    },
+    "se-dates-leap-day-impossible-in-non-leap-year": {
+        "canonical": null,
+        "failure": "impossible-date",
+        "formats": null,
+        "outcome": "failed",
+        "recognizedCountry": null,
+        "scheme": null
+    },
+    "se-dates-leap-day-is-real-but-the-year-is-implausible": {
+        "canonical": null,
+        "failure": "implausible-birth-date",
+        "formats": null,
+        "outcome": "failed",
+        "recognizedCountry": null,
+        "scheme": null
+    },
+    "se-dates-month-zero-is-impossible": {
+        "canonical": null,
+        "failure": "impossible-date",
+        "formats": null,
+        "outcome": "failed",
+        "recognizedCountry": null,
+        "scheme": null
+    },
+    "se-dates-year-zero-is-impossible": {
+        "canonical": null,
+        "failure": "impossible-date",
+        "formats": null,
+        "outcome": "failed",
+        "recognizedCountry": null,
+        "scheme": null
+    },
+    "se-organization-number-already-carrying-the-prefix": {
+        "canonical": "165560360793",
+        "failure": null,
+        "formats": {
+            "canonical": "165560360793",
+            "display": "556036-0793",
+            "masked": "16556036****",
+            "short": "556036-0793"
+        },
+        "outcome": "parsed",
+        "recognizedCountry": null,
+        "scheme": "se-organization-number"
+    },
+    "se-organization-number-excluded-by-options": {
+        "canonical": null,
+        "failure": "scheme-not-allowed",
+        "formats": null,
+        "outcome": "failed",
+        "recognizedCountry": null,
+        "scheme": null
+    },
+    "se-organization-number-has-no-birth-date-or-gender": {
+        "canonical": "162021005489",
+        "failure": null,
+        "formats": {
+            "canonical": "162021005489",
+            "display": "202100-5489",
+            "masked": "16202100****",
+            "short": "202100-5489"
+        },
+        "outcome": "parsed",
+        "recognizedCountry": null,
+        "scheme": "se-organization-number"
+    },
+    "se-organization-number-rejects-a-bad-check-digit": {
+        "canonical": null,
+        "failure": "checksum-mismatch",
+        "formats": null,
+        "outcome": "failed",
+        "recognizedCountry": null,
+        "scheme": null
+    },
+    "se-organization-number-rejects-a-third-digit-below-two": {
+        "canonical": "200001019801",
+        "failure": null,
+        "formats": {
+            "canonical": "200001019801",
+            "display": "20000101-9801",
+            "masked": "20000101****",
+            "short": "000101-9801"
+        },
+        "outcome": "parsed",
+        "recognizedCountry": null,
+        "scheme": "se-personal-number"
+    },
+    "se-organization-number-renders-the-conventional-form": {
+        "canonical": "162021003062",
+        "failure": null,
+        "formats": {
+            "canonical": "162021003062",
+            "display": "202100-3062",
+            "masked": "16202100****",
+            "short": "202100-3062"
+        },
+        "outcome": "parsed",
+        "recognizedCountry": null,
+        "scheme": "se-organization-number"
+    },
+    "se-organization-number-sole-proprietorship-resolves-as-a-person": {
+        "canonical": "190312049802",
+        "failure": null,
+        "formats": {
+            "canonical": "190312049802",
+            "display": "19031204-9802",
+            "masked": "19031204****",
+            "short": "031204+9802"
+        },
+        "outcome": "parsed",
+        "recognizedCountry": null,
+        "scheme": "se-personal-number"
+    },
+    "se-organization-number-ten-digits-with-separator": {
+        "canonical": "162021005448",
+        "failure": null,
+        "formats": {
+            "canonical": "162021005448",
+            "display": "202100-5448",
+            "masked": "16202100****",
+            "short": "202100-5448"
+        },
+        "outcome": "parsed",
+        "recognizedCountry": null,
+        "scheme": "se-organization-number"
+    },
+    "se-organization-number-ten-digits-without-separator": {
+        "canonical": "162021005448",
+        "failure": null,
+        "formats": {
+            "canonical": "162021005448",
+            "display": "202100-5448",
+            "masked": "16202100****",
+            "short": "202100-5448"
+        },
+        "outcome": "parsed",
+        "recognizedCountry": null,
+        "scheme": "se-organization-number"
+    },
+    "se-personal-number-interim-number-is-not-an-identity-number": {
+        "canonical": null,
+        "failure": "not-an-identity-number",
+        "formats": null,
+        "outcome": "failed",
+        "recognizedCountry": null,
+        "scheme": null
+    },
+    "se-personal-number-rejects-unexpected-character": {
+        "canonical": null,
+        "failure": "invalid-character",
+        "formats": null,
+        "outcome": "failed",
+        "recognizedCountry": null,
+        "scheme": null
+    },
+    "se-personal-number-twelve-digits": {
+        "canonical": "190312049802",
+        "failure": null,
+        "formats": {
+            "canonical": "190312049802",
+            "display": "19031204-9802",
+            "masked": "19031204****",
+            "short": "031204+9802"
+        },
+        "outcome": "parsed",
+        "recognizedCountry": null,
+        "scheme": "se-personal-number"
+    },
+    "se-personal-number-year-below-hundred": {
+        "canonical": null,
+        "failure": "implausible-birth-date",
+        "formats": null,
+        "outcome": "failed",
+        "recognizedCountry": null,
+        "scheme": null
+    },
+    "se-unicode-em-dash": {
+        "canonical": "190312049802",
+        "failure": null,
+        "formats": {
+            "canonical": "190312049802",
+            "display": "19031204-9802",
+            "masked": "19031204****",
+            "short": "031204+9802"
+        },
+        "outcome": "parsed",
+        "recognizedCountry": null,
+        "scheme": "se-personal-number"
+    },
+    "se-unicode-en-dash": {
+        "canonical": "190312049802",
+        "failure": null,
+        "formats": {
+            "canonical": "190312049802",
+            "display": "19031204-9802",
+            "masked": "19031204****",
+            "short": "031204+9802"
+        },
+        "outcome": "parsed",
+        "recognizedCountry": null,
+        "scheme": "se-personal-number"
+    },
+    "se-unicode-full-width-digits-invalid-character": {
+        "canonical": null,
+        "failure": "invalid-character",
+        "formats": null,
+        "outcome": "failed",
+        "recognizedCountry": null,
+        "scheme": null
+    },
+    "se-unicode-minus-sign": {
+        "canonical": "190312049802",
+        "failure": null,
+        "formats": {
+            "canonical": "190312049802",
+            "display": "19031204-9802",
+            "masked": "19031204****",
+            "short": "031204+9802"
+        },
+        "outcome": "parsed",
+        "recognizedCountry": null,
+        "scheme": "se-personal-number"
+    },
+    "se-unicode-narrow-no-break-space": {
+        "canonical": "190312049802",
+        "failure": null,
+        "formats": {
+            "canonical": "190312049802",
+            "display": "19031204-9802",
+            "masked": "19031204****",
+            "short": "031204+9802"
+        },
+        "outcome": "parsed",
+        "recognizedCountry": null,
+        "scheme": "se-personal-number"
+    },
+    "se-unicode-non-breaking-space": {
+        "canonical": "190312049802",
+        "failure": null,
+        "formats": {
+            "canonical": "190312049802",
+            "display": "19031204-9802",
+            "masked": "19031204****",
+            "short": "031204+9802"
+        },
+        "outcome": "parsed",
+        "recognizedCountry": null,
+        "scheme": "se-personal-number"
+    },
+    "se-unicode-ordinary-space": {
+        "canonical": "190312049802",
+        "failure": null,
+        "formats": {
+            "canonical": "190312049802",
+            "display": "19031204-9802",
+            "masked": "19031204****",
+            "short": "031204+9802"
+        },
+        "outcome": "parsed",
+        "recognizedCountry": null,
+        "scheme": "se-personal-number"
+    },
+    "se-unknown-birth-number-excluded-by-options": {
+        "canonical": null,
+        "failure": "scheme-not-allowed",
+        "formats": null,
+        "outcome": "failed",
+        "recognizedCountry": null,
+        "scheme": null
+    },
+    "se-unknown-birth-number-has-no-gender-but-keeps-its-date": {
+        "canonical": "202401150000",
+        "failure": null,
+        "formats": {
+            "canonical": "202401150000",
+            "display": "20240115-0000",
+            "masked": "20240115****",
+            "short": "240115-0000"
+        },
+        "outcome": "parsed",
+        "recognizedCountry": null,
+        "scheme": "se-personal-number"
+    },
+    "se-unknown-birth-number-on-a-coordination-number": {
+        "canonical": "202401750000",
+        "failure": null,
+        "formats": {
+            "canonical": "202401750000",
+            "display": "20240175-0000",
+            "masked": "20240175****",
+            "short": "240175-0000"
+        },
+        "outcome": "parsed",
+        "recognizedCountry": null,
+        "scheme": "se-coordination-number"
+    },
+    "se-unknown-birth-number-parses": {
+        "canonical": "202401150000",
+        "failure": null,
+        "formats": {
+            "canonical": "202401150000",
+            "display": "20240115-0000",
+            "masked": "20240115****",
+            "short": "240115-0000"
+        },
+        "outcome": "parsed",
+        "recognizedCountry": null,
+        "scheme": "se-personal-number"
+    },
+    "se-unknown-birth-number-with-any-other-check-digit-still-needs-luhn": {
+        "canonical": null,
+        "failure": "checksum-mismatch",
+        "formats": null,
+        "outcome": "failed",
+        "recognizedCountry": null,
+        "scheme": null
+    }
+}

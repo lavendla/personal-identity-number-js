@@ -1,0 +1,108 @@
+[
+  {
+    "id": "dk-cpr-number-with-separator",
+    "input": "251248-9996",
+    "issuedBy": "DK",
+    "referenceDate": "2026-08-16",
+    "outcome": "parsed",
+    "scheme": "dk-cpr-number",
+    "canonical": "2512489996",
+    "birthDate": "1948-12-25",
+    "gender": "female",
+    "isPerson": true,
+    "source": "medcom"
+  },
+  {
+    "id": "dk-cpr-number-without-separator",
+    "input": "2512489996",
+    "issuedBy": "DK",
+    "referenceDate": "2026-08-16",
+    "outcome": "parsed",
+    "scheme": "dk-cpr-number",
+    "canonical": "2512489996",
+    "source": "medcom"
+  },
+  {
+    "id": "dk-cpr-number-renders-short-identically-to-display",
+    "input": "251248-9996",
+    "issuedBy": "DK",
+    "outcome": "parsed",
+    "scheme": "dk-cpr-number",
+    "canonical": "2512489996",
+    "formats": {
+      "canonical": "2512489996",
+      "display": "251248-9996",
+      "short": "251248-9996",
+      "masked": "251248****"
+    },
+    "source": "medcom",
+    "provenanceNote": "Carries no referenceDate on purpose, which makes this two assertions in one. Denmark's century comes from a published table rather than an inference, so no reference date is needed to parse. And a ten-digit number has no long form, so Short has no century to elide and equals Display -- where Sweden's Short would fail with ReferenceDateRequired, Denmark's renders."
+  },
+  {
+    "id": "dk-cpr-number-odd-serial-is-male",
+    "input": "010490-9995",
+    "issuedBy": "DK",
+    "referenceDate": "2026-08-16",
+    "outcome": "parsed",
+    "scheme": "dk-cpr-number",
+    "canonical": "0104909995",
+    "birthDate": "1990-04-01",
+    "gender": "male",
+    "source": "medcom"
+  },
+  {
+    "id": "dk-cpr-number-post-2007-failing-modulus-eleven-is-valid",
+    "input": "131016-9995",
+    "issuedBy": "DK",
+    "referenceDate": "2026-08-16",
+    "outcome": "parsed",
+    "scheme": "dk-cpr-number",
+    "canonical": "1310169995",
+    "birthDate": "2016-10-13",
+    "gender": "male",
+    "source": "medcom",
+    "provenanceNote": "The single most important Danish case. Born 2016, so issued well after CPR stopped applying modulus-11 in 2007, and it does not satisfy modulus-11. CPR states such numbers are fully valid -- 'Personnumre uden modulus 11 er fuldt ud gyldige personnumre' -- so a parser enforcing modulus-11 rejects this real person. Do not add a modulus-11 check and do not delete this fixture when someone proposes one."
+  },
+  {
+    "id": "dk-cpr-number-rejects-a-serial-of-zero",
+    "input": "251248-0000",
+    "issuedBy": "DK",
+    "referenceDate": "2026-08-16",
+    "outcome": "failed",
+    "failure": "unsupported-scheme",
+    "source": "constructed",
+    "provenanceNote": "Serials run 0001-9999, so DDMMYY-0000 is not a CPR number and no bearer can exist. It is rejected by the century table rather than by a separate range check: a serial of 0000 falls outside every row, so the lookup has nowhere to resolve it. The reported failure changed in spec 0.3.0 and Denmark's behaviour did not. Six digits, a hyphen and four digits is also a shape-valid Finnish personal identity code, so once Finland became recognize-only the most specific answer available stopped being 'no scheme recognised this shape' -- the precedence table ranks unsupported-scheme above not-an-identity-number precisely because a recognition is more informative than the fallback. Denmark's refusal is still pinned here by outcome: failed, which would go red if the century table ever accepted a serial of 0000. The unhyphenated companion fixture pins the original failure code with no foreign shape in play.",
+    "recognizedCountry": "FI"
+  },
+  {
+    "id": "dk-cpr-number-rejects-the-thirtieth-of-february",
+    "input": "300248-3001",
+    "issuedBy": "DK",
+    "referenceDate": "2026-08-16",
+    "outcome": "failed",
+    "failure": "impossible-date",
+    "source": "constructed",
+    "provenanceNote": "30 February exists in no century, so no bearer can exist. The serial is 3001 rather than the 3000 a person would reach for first, because that form is Luhn-valid as a Swedish ten-digit short form and the provenance gate flags it. Writing the rejected value out here would trip the gate too, which is why it is described rather than quoted."
+  },
+  {
+    "id": "dk-cpr-number-rejects-a-birth-date-after-the-reference-date",
+    "input": "010132-5000",
+    "issuedBy": "DK",
+    "referenceDate": "2026-08-16",
+    "outcome": "failed",
+    "failure": "future-birth-date",
+    "source": "constructed",
+    "provenanceNote": "Serial 5000 with year 32 resolves to 2032, after the reference date. Safe to construct precisely because no bearer can exist yet: CPR has not issued numbers to people not yet born."
+  },
+  {
+    "id": "dk-cpr-number-rejects-a-serial-of-zero-without-a-separator",
+    "input": "2512480000",
+    "issuedBy": "DK",
+    "referenceDate": "2026-08-16",
+    "outcome": "failed",
+    "failure": "not-an-identity-number",
+    "recognizedCountry": null,
+    "source": "constructed",
+    "provenanceNote": "The same non-number written without its separator, which Finland's shape cannot match because the seventh character has to be an intermediate character and here it is a digit. Added when Finland became recognize-only, so the plain 'Denmark refuses a serial of 0000 and no other scheme has an opinion' assertion survives somewhere in the corpus. Serials run 0001-9999, so no bearer can exist."
+  }
+]

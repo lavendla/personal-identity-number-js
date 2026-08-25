@@ -1,0 +1,57 @@
+{
+  "name": "@lavendla/personal-identity-number",
+  "version": "0.1.0",
+  "description": "Validation, formatting and classification of personal identity numbers for Sweden and Denmark",
+  "keywords": [
+    "personnummer",
+    "samordningsnummer",
+    "organisationsnummer",
+    "cpr",
+    "sweden",
+    "denmark",
+    "identity"
+  ],
+  "homepage": "https://github.com/lavendla/personal-identity-number-js",
+  "bugs": {
+    "url": "https://github.com/lavendla/personal-identity-number-js/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lavendla/personal-identity-number-js.git"
+  },
+  "license": "MIT",
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "ATTRIBUTION.md"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts --clean",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.6.0",
+    "vite-node": "^2.1.9",
+    "vitest": "^2.0.0"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

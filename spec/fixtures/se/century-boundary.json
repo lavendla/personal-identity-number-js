@@ -1,0 +1,105 @@
+[
+  {
+    "id": "se-century-boundary-plus-separator-over-hundred",
+    "input": "031204+9802",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "parsed",
+    "scheme": "se-personal-number",
+    "canonical": "190312049802",
+    "birthDate": "1903-12-04",
+    "gender": "female",
+    "isPerson": true,
+    "formats": {
+      "canonical": "190312049802",
+      "display": "19031204-9802",
+      "short": "031204+9802",
+      "masked": "19031204****"
+    },
+    "source": "skatteverket"
+  },
+  {
+    "id": "se-century-boundary-hyphen-separator-recent-century",
+    "input": "190101-2391",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "parsed",
+    "scheme": "se-personal-number",
+    "canonical": "201901012391",
+    "source": "skatteverket"
+  },
+  {
+    "id": "se-century-boundary-current-century-matches-reference-year",
+    "input": "031204-9802",
+    "issuedBy": "SE",
+    "referenceDate": "1903-12-31",
+    "outcome": "parsed",
+    "scheme": "se-personal-number",
+    "canonical": "190312049802",
+    "source": "skatteverket",
+    "provenanceNote": "Rebuilt for the 1800 floor. The original used a year inside 0000-0099 as a testing device, pairing a tiny year with a reference date in the same range so that only one branch of CenturyResolver was reachable; the century-00 carve-out is what made constructing it legal. The floor removes that device, and a replacement cannot be constructed because a valid Swedish number with a plausible year is the disclosure risk the corpus rules forbid. Rebuilt instead from Skatteverket's published 190312049802 with a reference date chosen to reach the same branch: the candidate date 1903-12-04 is not after the reference 1903-12-31, so no century is subtracted. Verified to isolate that branch by inverting the comparison in CenturyResolver and watching this fixture fail."
+  },
+  {
+    "id": "se-century-boundary-previous-century-matches-reference-year",
+    "input": "031204-9802",
+    "issuedBy": "SE",
+    "referenceDate": "2003-01-01",
+    "outcome": "parsed",
+    "scheme": "se-personal-number",
+    "canonical": "190312049802",
+    "source": "skatteverket",
+    "provenanceNote": "Rebuilt for the 1800 floor; see the sibling fixture for why the original could not simply have its year raised. The mirror branch: the candidate date 2003-12-04 IS after the reference 2003-01-01, so a century is subtracted and the number resolves to 1903 — Skatteverket's published value. Same input as the fixture above, differing only in reference date, which is what makes the pair isolate one branch each."
+  },
+  {
+    "id": "se-century-boundary-future-century-explicit",
+    "input": "999912319999",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "failed",
+    "failure": "future-birth-date",
+    "source": "constructed"
+  },
+  {
+    "id": "se-century-boundary-requires-reference-date",
+    "input": "031204-9802",
+    "issuedBy": "SE",
+    "referenceDate": null,
+    "outcome": "failed",
+    "failure": "century-required",
+    "source": "skatteverket"
+  },
+  {
+    "id": "se-century-boundary-short-format-requires-reference-date",
+    "input": "190312049802",
+    "issuedBy": "SE",
+    "referenceDate": null,
+    "outcome": "parsed",
+    "scheme": "se-personal-number",
+    "canonical": "190312049802",
+    "birthDate": "1903-12-04",
+    "gender": "female",
+    "isPerson": true,
+    "source": "skatteverket",
+    "provenanceNote": "Twelve digits are century-complete, so this parses without a reference date. It exists to exercise Format::Short with no reference date on the object: rendering it must throw ReferenceDateRequired rather than guess, which the golden dump records as data instead of crashing. `formats` is deliberately omitted here — the conformance harness's formatsMatch test iterates every Format member and would fail on the throw, whereas the golden dump handles it explicitly."
+  },
+  {
+    "id": "se-century-boundary-timezone-sensitive-reference-instant",
+    "input": "031204-9802",
+    "issuedBy": "SE",
+    "referenceDate": "2003-12-04T00:30:00+01:00",
+    "outcome": "parsed",
+    "scheme": "se-personal-number",
+    "canonical": "190312049802",
+    "birthDate": "1903-12-04",
+    "gender": "female",
+    "isPerson": true,
+    "formats": {
+      "canonical": "190312049802",
+      "display": "19031204-9802",
+      "short": "031204-9802",
+      "masked": "19031204****"
+    },
+    "source": "skatteverket",
+    "provenanceNote": "Rebuilt for the 1800 floor, and the most load-bearing of the three. The reference is an instant 30 minutes past midnight in +01:00, whose UTC calendar day is the *previous* day, 2003-12-03. Read in UTC the candidate 2003-12-04 is after the reference, a century is subtracted, and the result is Skatteverket's 190312049802. Read in +01:00 the reference day would be 2003-12-04, the candidate would not be after it, and the number would resolve to 200312049802 — a different person, a century out. This fixture is what pins the decision that reference dates normalise to UTC on entry, recorded in docs/decision-log.md, and it must keep resolving to the 1903 value. The Short rendering is a second, quieter assertion of the same thing: the bearer is 99 at the UTC reference day of 2003-12-03 and so renders '-', where a reference read in +01:00 would put them at 100 on their birthday and render '+'."
+  }
+]

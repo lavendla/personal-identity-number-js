@@ -1,0 +1,112 @@
+[
+  {
+    "id": "no-national-identity-number-is-recognized-not-supported",
+    "input": "13108633528",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "failed",
+    "failure": "unsupported-scheme",
+    "recognizedCountry": "NO",
+    "source": "constructed",
+    "provenanceNote": "Eleven digits failing Norway's modulus-11 check: the correct check digits for 131086335 are 27, so this ends 28 and no bearer can exist. Asked as Swedish deliberately — naming a country does not make the recognition less true, and 'you have the wrong country' is the answer a caller who guessed wrong needs."
+  },
+  {
+    "id": "no-national-identity-number-is-recognized-without-a-country-named",
+    "input": "13108633528",
+    "referenceDate": "2026-08-16",
+    "outcome": "failed",
+    "failure": "unsupported-scheme",
+    "recognizedCountry": "NO",
+    "source": "constructed",
+    "provenanceNote": "The same digits with no issuedBy, which is the detect() path. Pins the half of the decision the named-country fixture cannot reach: Plan 2 established that a multi-country consultation reports the generic reason, and a recognition is the exception to that, because 'this is a Norwegian number' is an answer to 'what is this?' where 'Sweden says the check digit is wrong' is not."
+  },
+  {
+    "id": "no-national-identity-number-recognition-ignores-the-date",
+    "input": "31139912300",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "failed",
+    "failure": "unsupported-scheme",
+    "recognizedCountry": "NO",
+    "source": "constructed",
+    "provenanceNote": "Day 31 of month 13, so no bearer can exist for two independent reasons: the date cannot occur and the check digits are wrong (311399123 requires 09, this ends 00). It pins that recognition is shape-only — a value is reported as Norwegian without its date being validated, which is exactly what a recognize-only tier should do and exactly what would be wrong if the country were ever promoted to full support."
+  },
+  {
+    "id": "no-national-identity-number-with-a-separator-is-not-recognized",
+    "input": "131086-33559",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "failed",
+    "failure": "not-an-identity-number",
+    "recognizedCountry": null,
+    "source": "constructed",
+    "provenanceNote": "Skatteetaten's shape is eleven digits with no separator, so a hyphenated Norwegian number is not recognized. Kept because the boundary is worth pinning in the corpus rather than trusting a reading of the pattern: it is the difference between recognizing a shape and guessing at one."
+  },
+  {
+    "id": "fi-personal-identity-code-is-recognized-not-supported",
+    "input": "131052-308U",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "failed",
+    "failure": "unsupported-scheme",
+    "recognizedCountry": "FI",
+    "source": "constructed",
+    "provenanceNote": "DVV documents 131052-308T as its own example, so this fixture deliberately carries U instead: the modulus-31 control character for 131052308 is T, making this code invalid and leaving it no possible bearer. The letter is also what makes the case reachable at all — before spec/characters.json learned Finland's alphabet this input returned InvalidCharacter."
+  },
+  {
+    "id": "fi-personal-identity-code-recognizes-the-2000s-marker",
+    "input": "010101A123P",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "failed",
+    "failure": "unsupported-scheme",
+    "recognizedCountry": "FI",
+    "source": "constructed",
+    "provenanceNote": "Intermediate character A, which decree 690/2022 assigns to births from 1 January 2000. Control character P where the correct one for 010101123 is N, so no bearer can exist."
+  },
+  {
+    "id": "fi-personal-identity-code-recognizes-a-marker-added-in-2023",
+    "input": "150375Y246D",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "failed",
+    "failure": "unsupported-scheme",
+    "recognizedCountry": "FI",
+    "source": "constructed",
+    "provenanceNote": "Intermediate character Y, one of the letters decree 690/2022 added for 1900s births so codes would not run out; DVV issued the first Y code on 19 December 2023. Control character D where the correct one for 150375246 is C, so no bearer can exist. This is the fixture that would fail if the marker set were encoded from pre-2023 memory rather than from the decree."
+  },
+  {
+    "id": "fi-personal-identity-code-in-lowercase-is-an-invalid-character",
+    "input": "131052-308u",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "failed",
+    "failure": "invalid-character",
+    "recognizedCountry": null,
+    "source": "constructed",
+    "provenanceNote": "The same invalid code in lowercase. The normalizer deliberately does not fold case, because PHP's mb_strtoupper and JavaScript's toUpperCase do not agree for every input and a divergence between the runtimes is worse than a lowercase Finnish code being reported as InvalidCharacter. This fixture is what stops that limitation being quietly removed by someone adding a case fold without reading why it is absent."
+  },
+  {
+    "id": "fi-personal-identity-code-loses-to-a-real-danish-parse",
+    "input": "010490-9989",
+    "issuedBy": "DK",
+    "referenceDate": "2026-08-16",
+    "outcome": "parsed",
+    "scheme": "dk-cpr-number",
+    "canonical": "0104909989",
+    "recognizedCountry": null,
+    "source": "medcom",
+    "provenanceNote": "A published MedCom test number in its display form, which is character-for-character a shape-valid Finnish code: six digits, a hyphen, three digits, a digit control character. It parses as Danish, and this fixture pins that a parse outranks a recognition — without it, nothing stops a later change reclassifying valid Danish numbers as unrecognized foreign ones. The collision is structural rather than coincidental, because modulus-11 is not a Danish validity rule, so most such Finnish codes parse as Danish."
+  },
+  {
+    "id": "fi-personal-identity-code-is-recognized-when-nothing-parses-it",
+    "input": "010490-998T",
+    "issuedBy": "DK",
+    "referenceDate": "2026-08-16",
+    "outcome": "failed",
+    "failure": "unsupported-scheme",
+    "recognizedCountry": "FI",
+    "source": "constructed",
+    "provenanceNote": "The other side of the fixture above: the same six digits with a letter control character, which no Danish shape can match. Constructed and invalid in Finland too — the correct control character for 010490998 is 9, not T — so it has no bearer in either country. Together the two fixtures pin where the boundary between a parse and a recognition actually falls."
+  }
+]

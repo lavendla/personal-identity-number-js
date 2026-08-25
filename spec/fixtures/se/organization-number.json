@@ -1,0 +1,106 @@
+[
+  {
+    "id": "se-organization-number-ten-digits-with-separator",
+    "input": "202100-5448",
+    "issuedBy": "SE",
+    "outcome": "parsed",
+    "scheme": "se-organization-number",
+    "canonical": "162021005448",
+    "isPerson": false,
+    "source": "public-organization",
+    "provenanceNote": "Skatteverket's own organization number, published by Skatteverket about itself. Third digit is 2, so by 4 § lagen (1974:174) it cannot be any person's personnummer -- a personnummer's third digit is the first digit of its month and so is 0 or 1. Covered by the organization-number carve-out in CLAUDE.md: no living bearer, and Swedish company registration data is public by law. Carries no referenceDate because an organization number encodes no birth date, so no century has to be inferred."
+  },
+  {
+    "id": "se-organization-number-ten-digits-without-separator",
+    "input": "2021005448",
+    "issuedBy": "SE",
+    "outcome": "parsed",
+    "scheme": "se-organization-number",
+    "canonical": "162021005448",
+    "source": "public-organization",
+    "provenanceNote": "The same Skatteverket number without its separator, asserting that the canonical form does not depend on how the caller wrote it. Third digit 2; see the entry above for the carve-out."
+  },
+  {
+    "id": "se-organization-number-already-carrying-the-prefix",
+    "input": "165560360793",
+    "issuedBy": "SE",
+    "outcome": "parsed",
+    "scheme": "se-organization-number",
+    "canonical": "165560360793",
+    "source": "public-organization",
+    "provenanceNote": "Input already in twelve-digit PeOrgNr form, so the canonical form is unchanged rather than gaining a second prefix. Third digit of the ten-digit body is 6, so 4 § lagen (1974:174) places it outside the personnummer space. Used as the canonical-form example in README.md and the design spec since Plan 1."
+  },
+  {
+    "id": "se-organization-number-has-no-birth-date-or-gender",
+    "input": "202100-5489",
+    "issuedBy": "SE",
+    "outcome": "parsed",
+    "scheme": "se-organization-number",
+    "canonical": "162021005489",
+    "birthDate": null,
+    "gender": null,
+    "isPerson": false,
+    "source": "public-organization",
+    "provenanceNote": "Bolagsverket's own organization number, published by Bolagsverket about itself. Third digit is 2, so by 4 § lagen (1974:174) it cannot be any person's personnummer. Asserts the nullable accessors are actually null: an organization number encodes neither a birth date nor a gender, which is the case the SchemeResult refactor was built for."
+  },
+  {
+    "id": "se-organization-number-renders-the-conventional-form",
+    "input": "202100-3062",
+    "issuedBy": "SE",
+    "outcome": "parsed",
+    "scheme": "se-organization-number",
+    "canonical": "162021003062",
+    "formats": {
+      "canonical": "162021003062",
+      "display": "202100-3062",
+      "short": "202100-3062",
+      "masked": "16202100****"
+    },
+    "source": "public-organization",
+    "provenanceNote": "Statistiska centralbyrån's own organization number, published by SCB about itself. Third digit is 2, so by 4 § lagen (1974:174) it cannot be any person's personnummer. Pins all four renderings. Display drops the 16 legal-person marker to give 202100-3062, the form Swedish organization numbers are actually written in, and Short is identical because there is no century to elide and no bearer whose age a +/- separator could report. Note Short therefore needs no referenceDate, where a Swedish personal number's would fail with ReferenceDateRequired. Masked keeps the prefix and blanks the last four, uniformly with every other scheme."
+  },
+  {
+    "id": "se-organization-number-rejects-a-third-digit-below-two",
+    "input": "0001019801",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "parsed",
+    "scheme": "se-personal-number",
+    "canonical": "200001019801",
+    "isPerson": true,
+    "source": "skatteverket",
+    "provenanceNote": "A published Skatteverket personal number in ten-digit short form. It is NOT rejected outright -- the personal-number scheme claims it, which is the correct answer -- but the organization scheme refuses it on the third-digit rule, and that refusal is what this fixture exists to pin. Its third digit is 0 because that digit is the first digit of the month, which is exactly why 4 § lagen (1974:174) fixes an organization number's at 2 or above. There is no separate 'third digit below 2' case to write: a personnummer is such a number."
+  },
+  {
+    "id": "se-organization-number-rejects-a-bad-check-digit",
+    "input": "2021005449",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "failed",
+    "failure": "checksum-mismatch",
+    "source": "constructed",
+    "provenanceNote": "Skatteverket's organization number with its check digit incremented, so the value fails Luhn and no bearer can exist. Also pins the failure-precedence rule: the personal-number scheme answers impossible-date for this input, because read as a personnummer its month is 21, and checksum-mismatch is the more specific answer since the third digit already established which kind of number it is."
+  },
+  {
+    "id": "se-organization-number-excluded-by-options",
+    "input": "202100-5448",
+    "issuedBy": "SE",
+    "options": { "allowOrganizationNumber": false },
+    "outcome": "failed",
+    "failure": "scheme-not-allowed",
+    "source": "public-organization",
+    "provenanceNote": "Skatteverket's own organization number, third digit 2, under options that exclude organization numbers. The failure must be scheme-not-allowed rather than not-an-identity-number: the caller's own option is the reason, and reporting 'unrecognised' would hide that. This is why the scheme runs even when the option is false -- a scheme the dispatcher skipped could not report why it refused."
+  },
+  {
+    "id": "se-organization-number-sole-proprietorship-resolves-as-a-person",
+    "input": "19031204-9802",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "parsed",
+    "scheme": "se-personal-number",
+    "canonical": "190312049802",
+    "isPerson": true,
+    "source": "skatteverket",
+    "provenanceNote": "The sole-proprietorship case, and the most misunderstood behaviour in the package. A Swedish sole proprietorship has no separate organization number: its organization number IS the owner's personal number, identical digits. SCB states this directly -- 'För fysiska personer, enskilda näringsidkare, motsvaras PeOrgNr av personnumret'. So such a value resolves as se-personal-number with isPerson() true, and that is correct rather than a defect. No parser setting recovers the distinction; it is contextual, not structural. Marked skatteverket rather than public-organization on purpose: this is exactly the case the organization-number carve-out excludes, because the number has a third digit of 0 or 1 and therefore is a person's number. Consumers matching people must treat isPerson() as load-bearing."
+  }
+]

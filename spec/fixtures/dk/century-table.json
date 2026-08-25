@@ -1,0 +1,56 @@
+[
+  {
+    "id": "dk-century-serials-0001-3999-resolve-to-the-nineteen-hundreds",
+    "input": "290200-3000",
+    "issuedBy": "DK",
+    "referenceDate": "2026-08-16",
+    "outcome": "failed",
+    "failure": "impossible-date",
+    "source": "constructed",
+    "provenanceNote": "Serial 3000 with year 00 resolves to 1900, which is not a leap year because it is divisible by 100 and not by 400, so 29 February 1900 does not exist. The same input resolving to 2000 would be perfectly valid, which is what makes this row's century base observable through an invalid number rather than a valid one. No bearer can exist for a date that never occurred."
+  },
+  {
+    "id": "dk-century-serials-4000-4999-years-00-36-resolve-to-the-two-thousands",
+    "input": "010130-4000",
+    "issuedBy": "DK",
+    "referenceDate": "2026-08-16",
+    "outcome": "failed",
+    "failure": "future-birth-date",
+    "source": "constructed",
+    "provenanceNote": "Serial 4000 with year 30 resolves to 2030, after the reference date. Resolving to 1930 instead would have parsed successfully, so the failure is what pins this row's century base to 2000. Safe to construct because no bearer can exist yet."
+  },
+  {
+    "id": "dk-century-serials-5000-8999-years-00-57-resolve-to-the-two-thousands",
+    "input": "010130-5000",
+    "issuedBy": "DK",
+    "referenceDate": "2026-08-16",
+    "outcome": "failed",
+    "failure": "future-birth-date",
+    "source": "constructed",
+    "provenanceNote": "Serial 5000 with year 30 resolves to 2030, after the reference date. Resolving to 1930 instead would have parsed successfully, so the failure is what pins this row's century base to 2000. Safe to construct because no bearer can exist yet."
+  },
+  {
+    "id": "dk-century-serials-9000-9999-years-00-36-resolve-to-the-two-thousands",
+    "input": "130624-9996",
+    "issuedBy": "DK",
+    "referenceDate": "2026-08-16",
+    "outcome": "parsed",
+    "scheme": "dk-cpr-number",
+    "canonical": "1306249996",
+    "birthDate": "2024-06-13",
+    "gender": "female",
+    "source": "medcom"
+  },
+  {
+    "id": "dk-century-serials-9000-9999-years-37-99-resolve-to-the-nineteen-hundreds",
+    "input": "250947-9989",
+    "issuedBy": "DK",
+    "referenceDate": "2026-08-16",
+    "outcome": "parsed",
+    "scheme": "dk-cpr-number",
+    "canonical": "2509479989",
+    "birthDate": "1947-09-25",
+    "gender": "male",
+    "source": "medcom"
+  }
+]

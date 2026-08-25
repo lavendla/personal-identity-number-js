@@ -1,0 +1,28 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  conformance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      # `npm install`, not `npm ci`: the lockfile lives in the monorepo root and
+      # is not part of what a mirror ships.
+      - run: npm install
+      - run: npx tsc --noEmit
+      - name: The corpus resolves as recorded
+        run: npx vitest run
+      # See the note in the PHP mirror's workflow: matching the agreed snapshot
+      # is transitive agreement with the PHP package.
+      - name: Output matches the agreed snapshot
+        run: npx vite-node bin/dumpGolden.ts | diff - spec/golden.json

@@ -1,0 +1,49 @@
+[
+  {
+    "id": "se-dates-leap-day-is-real-but-the-year-is-implausible",
+    "input": "001202299994",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "failed",
+    "source": "constructed",
+    "provenanceNote": "Renamed from se-dates-leap-day-valid, which would now be a lie: the 1800 floor rejects the year 0012. The coverage is intact, and the failure member is what preserves it. The floor is checked after the date, so reaching implausible-birth-date proves isRealDate() accepted 29 February 0012 as a real leap day — had it not, this would report impossible-date instead. The distinction between the two members is doing the work. Century \"00\" has never been issued by Skatteverket, so no bearer can exist.",
+    "failure": "implausible-birth-date"
+  },
+  {
+    "id": "se-dates-leap-day-impossible-in-non-leap-year",
+    "input": "190002299999",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "failed",
+    "failure": "impossible-date",
+    "source": "constructed"
+  },
+  {
+    "id": "se-dates-month-zero-is-impossible",
+    "input": "190300159999",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "failed",
+    "failure": "impossible-date",
+    "source": "constructed"
+  },
+  {
+    "id": "se-dates-day-zero-is-impossible",
+    "input": "190306009999",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "failed",
+    "failure": "impossible-date",
+    "source": "constructed"
+  },
+  {
+    "id": "se-dates-year-zero-is-impossible",
+    "input": "000001011238",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "failed",
+    "failure": "impossible-date",
+    "source": "constructed",
+    "provenanceNote": "Year 0000 is inside the century-\"00\" carve-out (never issued by Skatteverket), so a constructed case is safe here regardless of outcome. It exercises PHP checkdate()'s year floor (1-32767) against JavaScript's Date, which has none and used to accept year 0 — see docs/open-threads.md §3.13 for the carve-out and the final review's Important 3 for the divergence this closes."
+  }
+]

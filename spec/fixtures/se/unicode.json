@@ -1,0 +1,80 @@
+[
+  {
+    "id": "se-unicode-non-breaking-space",
+    "input": "19031204 9802",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "parsed",
+    "scheme": "se-personal-number",
+    "canonical": "190312049802",
+    "birthDate": "1903-12-04",
+    "gender": "female",
+    "isPerson": true,
+    "formats": {
+      "canonical": "190312049802",
+      "display": "19031204-9802",
+      "short": "031204+9802",
+      "masked": "19031204****"
+    },
+    "source": "skatteverket"
+  },
+  {
+    "id": "se-unicode-narrow-no-break-space",
+    "input": "19031204 9802",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "parsed",
+    "scheme": "se-personal-number",
+    "canonical": "190312049802",
+    "source": "skatteverket"
+  },
+  {
+    "id": "se-unicode-ordinary-space",
+    "input": "19031204 9802",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "parsed",
+    "scheme": "se-personal-number",
+    "canonical": "190312049802",
+    "source": "skatteverket"
+  },
+  {
+    "id": "se-unicode-en-dash",
+    "input": "19031204–9802",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "parsed",
+    "scheme": "se-personal-number",
+    "canonical": "190312049802",
+    "source": "skatteverket"
+  },
+  {
+    "id": "se-unicode-em-dash",
+    "input": "19031204—9802",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "parsed",
+    "scheme": "se-personal-number",
+    "canonical": "190312049802",
+    "source": "skatteverket"
+  },
+  {
+    "id": "se-unicode-minus-sign",
+    "input": "19031204−9802",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "parsed",
+    "scheme": "se-personal-number",
+    "canonical": "190312049802",
+    "source": "skatteverket"
+  },
+  {
+    "id": "se-unicode-full-width-digits-invalid-character",
+    "input": "１９０３１２０４-９８０２",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "failed",
+    "failure": "invalid-character",
+    "source": "constructed"
+  }
+]

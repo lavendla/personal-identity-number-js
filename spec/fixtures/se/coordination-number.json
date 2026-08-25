@@ -1,0 +1,101 @@
+[
+  {
+    "id": "se-coordination-number-checksum-mismatch",
+    "input": "19031264-9802",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "failed",
+    "failure": "checksum-mismatch",
+    "source": "constructed"
+  },
+  {
+    "id": "se-coordination-number-invalid-checksum-day-61",
+    "input": "20190161-2391",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "failed",
+    "failure": "checksum-mismatch",
+    "source": "constructed",
+    "provenanceNote": "Formerly id \"se-coordination-number-day-61-resolves-to-first\". That name claimed the fixture proved day 61 resolves to the 1st, but reshaping 20190101-2391's day (01→61) invalidates the original check digit, so this never reaches date resolution at all — it only ever asserted checksum-mismatch. Renamed to describe what it actually tests; the real day-61-resolves-to-first behaviour is now proven separately by se-coordination-number-day-61-parses-to-first, using an official Skatteverket number. See docs/open-threads.md and PROVENANCE.md for the incident."
+  },
+  {
+    "id": "se-coordination-number-invalid-checksum-day-91",
+    "input": "20190391-2385",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "failed",
+    "failure": "checksum-mismatch",
+    "source": "constructed",
+    "provenanceNote": "Formerly id \"se-coordination-number-day-91-resolves-to-thirty-first\". Same issue as se-coordination-number-invalid-checksum-day-61: reshaping the day (31→91) invalidates the checksum before date resolution is ever reached, so this only ever asserted checksum-mismatch. The real day-91-resolves-to-thirty-first behaviour is now proven separately by se-coordination-number-day-91-parses-to-thirty-first, using an official Skatteverket number."
+  },
+  {
+    "id": "se-coordination-number-day-92-is-impossible",
+    "input": "20190192-2391",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "failed",
+    "failure": "impossible-date",
+    "source": "constructed"
+  },
+  {
+    "id": "se-coordination-number-scheme-not-allowed",
+    "input": "19031264-9802",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "options": {
+      "allowCoordinationNumber": false
+    },
+    "outcome": "failed",
+    "failure": "scheme-not-allowed",
+    "source": "constructed"
+  },
+  {
+    "id": "se-coordination-number-twelve-digits",
+    "input": "202601622380",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "parsed",
+    "scheme": "se-coordination-number",
+    "canonical": "202601622380",
+    "birthDate": "2026-01-02",
+    "isPerson": true,
+    "source": "skatteverket"
+  },
+  {
+    "id": "se-coordination-number-day-61-parses-to-first",
+    "input": "202601612381",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "parsed",
+    "scheme": "se-coordination-number",
+    "canonical": "202601612381",
+    "birthDate": "2026-01-01",
+    "gender": "female",
+    "source": "skatteverket"
+  },
+  {
+    "id": "se-coordination-number-day-91-parses-to-thirty-first",
+    "input": "202601912393",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "parsed",
+    "scheme": "se-coordination-number",
+    "canonical": "202601912393",
+    "birthDate": "2026-01-31",
+    "gender": "male",
+    "source": "skatteverket"
+  },
+  {
+    "id": "se-coordination-number-scheme-not-allowed-for-valid-number",
+    "input": "202601622380",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "options": {
+      "allowCoordinationNumber": false
+    },
+    "outcome": "failed",
+    "failure": "scheme-not-allowed",
+    "source": "skatteverket",
+    "provenanceNote": "Added alongside the pre-existing se-coordination-number-scheme-not-allowed (which uses a constructed, invalid-checksum input). This one proves the allowCoordinationNumber:false gate blocks a genuinely valid, official coordination number, not only a reshaped-invalid one."
+  }
+]

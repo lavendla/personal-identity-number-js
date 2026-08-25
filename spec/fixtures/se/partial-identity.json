@@ -1,0 +1,169 @@
+[
+  {
+    "id": "se-unknown-birth-number-parses",
+    "input": "20240115-0000",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "parsed",
+    "scheme": "se-personal-number",
+    "canonical": "202401150000",
+    "birthDate": "2024-01-15",
+    "gender": null,
+    "isPerson": true,
+    "formats": {
+      "canonical": "202401150000",
+      "display": "20240115-0000",
+      "short": "240115-0000",
+      "masked": "20240115****"
+    },
+    "source": "unissuable",
+    "provenanceNote": "Exception 1: a birth number of 000 is outside the issuable range, so no bearer can exist. SOU 2008:60 states it directly — \"Födelsenumret består av tre siffror (001–999)\" and \"det innebär att det finns totalt 999 personnummer per födelsetid, 499 för kvinnor och 500 för män\" — and no row in any of the six Skatteverket files in spec/sources/skatteverket/ uses 000 either. The number is also Luhn-invalid by design (the tail 0000 is the checksum-exempt convention; Luhn over 240115000 gives 4), so it cannot collide with a real personnummer on the checksum either. Two independent reasons, one fixture."
+  },
+  {
+    "id": "se-unknown-birth-number-has-no-gender-but-keeps-its-date",
+    "input": "20240115-0000",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "parsed",
+    "scheme": "se-personal-number",
+    "birthDate": "2024-01-15",
+    "gender": null,
+    "source": "unissuable",
+    "provenanceNote": "Same digits and same Exception 1 reasoning as se-unknown-birth-number-parses. Kept as its own case because it asserts the accessor contract rather than the parse: each accessor is null exactly when the digits it reads carry no information, so the date survives and the gender does not. The parity digit that would carry gender is the third digit of the birth number, which is the field being declared unknown -- reporting a gender from it would be fabrication."
+  },
+  {
+    "id": "se-unknown-birth-number-on-a-coordination-number",
+    "input": "20240175-0000",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "parsed",
+    "scheme": "se-coordination-number",
+    "canonical": "202401750000",
+    "birthDate": "2024-01-15",
+    "gender": null,
+    "isPerson": true,
+    "formats": {
+      "canonical": "202401750000",
+      "display": "20240175-0000",
+      "short": "240175-0000",
+      "masked": "20240175****"
+    },
+    "source": "unissuable",
+    "provenanceNote": "Exception 1, same as se-unknown-birth-number-parses: birth number 000 is outside SOU 2008:60's issuable range of 001-999. Day 75 is day 15 plus the coordination number's +60 offset, so this asserts the two conventions compose -- the unknown birth number does not stop the number being recognised as a coordination number, and the offset day still resolves to a real birthday."
+  },
+  {
+    "id": "se-unknown-birth-number-excluded-by-options",
+    "input": "20240115-0000",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "options": {
+      "allowUnknownBirthNumber": false
+    },
+    "outcome": "failed",
+    "failure": "scheme-not-allowed",
+    "source": "unissuable",
+    "provenanceNote": "Same digits and same Exception 1 reasoning as se-unknown-birth-number-parses. Marked unissuable rather than constructed because the digits are valid when the option allows them -- what this fixture pins is the caller's own exclusion, which outranks every other refusal in the precedence table."
+  },
+  {
+    "id": "se-unknown-birth-number-with-any-other-check-digit-still-needs-luhn",
+    "input": "20240115-0001",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "failed",
+    "failure": "checksum-mismatch",
+    "source": "constructed",
+    "provenanceNote": "The checksum exemption covers the tail 0000 and nothing else. Luhn over 240115000 gives 4, so this input is refused for its check digit -- which is what makes the exemption a named literal rather than a hole for the whole birth number 000. Constructed and invalid, as constructed cases must be."
+  },
+  {
+    "id": "se-coordination-number-unknown-month-parses",
+    "input": "191500722390",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "parsed",
+    "scheme": "se-coordination-number",
+    "canonical": "191500722390",
+    "birthDate": null,
+    "gender": "male",
+    "isPerson": true,
+    "formats": {
+      "canonical": "191500722390",
+      "display": "19150072-2390",
+      "short": "150072+2390",
+      "masked": "19150072****"
+    },
+    "source": "skatteverket",
+    "provenanceNote": "Was se-coordination-number-unknown-day-is-rejected's sibling se-coordination-number-unknown-month-is-rejected, in coordination-number.json, asserting impossible-date. Reversed and renamed under spec 0.3.0: a fixture called …-is-rejected that asserts a successful parse is worse than no name at all. Skatteverket's own test corpus treats month 00 as a valid coordination number encoding an unknown birth month -- 130 of the 1498 rows in spec/sources/skatteverket/testsamordningsnummer-1914-2019.csv, re-counted against the committed corpus for Task 11. The gender survives because the birth number is intact, and the canonical form is complete, which is the whole argument for accepting these at all."
+  },
+  {
+    "id": "se-coordination-number-unknown-day-parses",
+    "input": "191711602399",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "parsed",
+    "scheme": "se-coordination-number",
+    "canonical": "191711602399",
+    "birthDate": null,
+    "gender": "male",
+    "isPerson": true,
+    "formats": {
+      "canonical": "191711602399",
+      "display": "19171160-2399",
+      "short": "171160+2399",
+      "masked": "19171160****"
+    },
+    "source": "skatteverket",
+    "provenanceNote": "Was se-coordination-number-unknown-day-is-rejected, in coordination-number.json, asserting impossible-date. Reversed and renamed under spec 0.3.0. Day 60 is day 00 plus the coordination number's +60 offset -- 41 of the same 1498 rows -- and it is also the one-character case: the old classifier used rawDay > 60, so day 60 fell through as an ordinary calendar day of 60 and failed date validation. This was a published Skatteverket number that the package rejected."
+  },
+  {
+    "id": "se-coordination-number-unknown-month-and-day-parses",
+    "input": "198000602394",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "parsed",
+    "scheme": "se-coordination-number",
+    "canonical": "198000602394",
+    "birthDate": null,
+    "gender": "male",
+    "isPerson": true,
+    "formats": {
+      "canonical": "198000602394",
+      "display": "19800060-2394",
+      "short": "800060-2394",
+      "masked": "19800060****"
+    },
+    "source": "skatteverket",
+    "provenanceNote": "Row 925 of spec/sources/skatteverket/testsamordningsnummer-1914-2019.csv. Both fields unknown at once, which 3 of the 1498 rows are (0.2%) -- the case where each rule could pass while the pair fails. Its short form is the '-' half of the separator rule: the bearer's year is known to be 1980, so 46 at the reference date, where the two fixtures above are over 100 and take '+'."
+  },
+  {
+    "id": "se-coordination-number-partial-date-still-resolves-its-century",
+    "input": "800060-2394",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "parsed",
+    "scheme": "se-coordination-number",
+    "canonical": "198000602394",
+    "birthDate": null,
+    "gender": "male",
+    "source": "skatteverket",
+    "provenanceNote": "The same published number as se-coordination-number-unknown-month-and-day-parses, in its century-elided form, so the century has to be resolved rather than read. That is the round trip the separator rule exists for: this input is exactly what Format::Short renders for that fixture, and it has to resolve back to 1980 rather than 2080."
+  },
+  {
+    "id": "se-coordination-number-century-resolves-from-the-real-day-not-the-offset",
+    "input": "2601612381",
+    "issuedBy": "SE",
+    "referenceDate": "2026-01-15",
+    "outcome": "parsed",
+    "scheme": "se-coordination-number",
+    "canonical": "202601612381",
+    "birthDate": "2026-01-01",
+    "gender": "female",
+    "formats": {
+      "canonical": "202601612381",
+      "display": "20260161-2381",
+      "short": "260161-2381",
+      "masked": "20260161****"
+    },
+    "source": "skatteverket",
+    "provenanceNote": "Row 2 of spec/sources/skatteverket/testsamordningsnummer-2026.csv, 1 January 2026, in its century-elided form with a reference date later the same month. It fails against every earlier release: the century resolver was handed the offset day, and \"2026-01-61\" is greater than \"2026-01-15\" as a string, so it concluded the birth was in the future and stepped back a century to 1926-01-01. No fixture used a ten-digit coordination number, so both runtimes agreed on the wrong answer and golden:check stayed green."
+  }
+]

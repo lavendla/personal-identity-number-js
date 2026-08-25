@@ -1,0 +1,42 @@
+[
+  {
+    "id": "se-personal-number-twelve-digits",
+    "input": "19031204-9802",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "parsed",
+    "scheme": "se-personal-number",
+    "canonical": "190312049802",
+    "source": "skatteverket"
+  },
+  {
+    "id": "se-personal-number-rejects-unexpected-character",
+    "input": "19o3-12-04 98o2",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "failed",
+    "failure": "invalid-character",
+    "source": "constructed"
+  },
+  {
+    "id": "se-personal-number-year-below-hundred",
+    "input": "001203049802",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "failed",
+    "source": "constructed",
+    "provenanceNote": "The id still describes the input, so it stands; only the outcome moved. The 1800 floor rejects the year 0012. This fixture keeps its original coverage precisely because it fails: had the year been remapped to 1912 -- the Date.UTC trap in docs/open-threads.md §3.5, which JavaScript would do and PHP would not -- it would clear the floor and parse. Reaching implausible-birth-date proves no remapping occurred. Century \"00\" has never been issued by Skatteverket, so no bearer can exist.",
+    "failure": "implausible-birth-date"
+  },
+  {
+    "id": "se-personal-number-interim-number-is-not-an-identity-number",
+    "input": "19121212-T123",
+    "issuedBy": "SE",
+    "referenceDate": "2026-08-16",
+    "outcome": "failed",
+    "failure": "not-an-identity-number",
+    "recognizedCountry": null,
+    "source": "constructed",
+    "provenanceNote": "A Region Stockholm-shaped reservnummer. docs/open-threads.md 1.3 decided interim numbers are out of scope entirely and recorded that they resolve to NotAnIdentityNumber -- and until spec 0.3.0 that was not true: the interim letters had been removed from the allowed set, so a reservnummer returned InvalidCharacter instead. Allowing Finland's alphabet made the recorded claim true, because every interim letter (T R S U W X J K L M N) is inside Finland's control-character set. This fixture is what keeps it true. Constructed, and invalid under every scheme: no bearer can exist because no registry issues this shape at all -- which is 1.3's entire point."
+  }
+]
